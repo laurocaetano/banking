@@ -11,6 +11,17 @@ public class RecentStatistics {
 	private Double min = 0D;
 	private Long count = 0L;
 
+	public RecentStatistics() {
+	}
+
+	public RecentStatistics(Double sum, Double avg, Double max, Double min, Long count) {
+		this.sum = sum;
+		this.avg = avg;
+		this.max = max;
+		this.min = min;
+		this.count = count;
+	}
+
 	public Double getSum() {
 		return sum;
 	}
