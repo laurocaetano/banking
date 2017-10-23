@@ -9,10 +9,6 @@ import org.junit.Test;
 
 public class TransactionTest {
 
-	private Long secondsAgoToTimestamp(Long seconds) {
-		return Instant.now().minusSeconds(seconds).toEpochMilli();
-	}
-
 	@Test
 	public void testTransactionIsNewerThanSixtySeconds() {
 		final Transaction transaction = new Transaction(secondsAgoToTimestamp(10L), 12L);
@@ -23,5 +19,9 @@ public class TransactionTest {
 	public void testTransactionIsOlderThanSixtySeconds() {
 		final Transaction transaction = new Transaction(secondsAgoToTimestamp(80L), 12L);
 		assertFalse(transaction.isNewerThanSixtySeconds());
+	}
+
+	private Long secondsAgoToTimestamp(Long seconds) {
+		return Instant.now().minusSeconds(seconds).toEpochMilli();
 	}
 }
