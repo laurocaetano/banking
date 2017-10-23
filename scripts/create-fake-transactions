@@ -1,0 +1,4 @@
+for i in $(seq 1 1000);
+  do
+    curl  -H "Content-Type: application/json" -X POST -d '{"amount":'$(jot -r 1 10 10000)',"timestamp":'$(date +%s999)'}' http://localhost:8080/transactions
+  done
