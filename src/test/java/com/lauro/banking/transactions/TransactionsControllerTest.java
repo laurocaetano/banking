@@ -1,5 +1,7 @@
 package com.lauro.banking.transactions;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.time.Instant;
@@ -22,23 +24,37 @@ public class TransactionsControllerTest {
 	@Autowired
 	private MockMvc mvc;
 
+	@Autowired
+	private TransactionsLog transactionsLog;
+
 	@Test
 	public void testCreatingTransactionsNewerThanSixtySeconds() throws Exception {
+		final Long amount = 12L;
 		final Long timestamp = Instant.now().toEpochMilli();
-		final String requestContent = "{\"amount\":12,\"timestamp\":" + timestamp + "}";
+		final String requestContent = "{\"amount\":" + amount + ",\"timestamp\":" + timestamp + "}";
 
 		mvc.perform(MockMvcRequestBuilders.post("/transactions").contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON).content(requestContent)).andExpect(status().isCreated())
 				.andReturn();
+
+		final Transaction latestTransactionAdded = transactionsLog.consume();
+
+		assertEquals(amount, latestTransactionAdded.getAmount());
+		assertEquals(timestamp, latestTransactionAdded.getTimestamp());
 	}
 
 	@Test
 	public void testCreatingTransactionsOlderThanSixtySeconds() throws Exception {
+		final Long amount = 15L;
 		final Long timestamp = Instant.now().minusSeconds(70L).toEpochMilli();
-		final String requestContent = "{\"amount\":12,\"timestamp\":" + timestamp + "}";
+		final String requestContent = "{\"amount\":" + amount + ",\"timestamp\":" + timestamp + "}";
 
 		mvc.perform(MockMvcRequestBuilders.post("/transactions").contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON).content(requestContent)).andExpect(status().isNoContent())
 				.andReturn();
+
+		final Transaction latestTransactionAdded = transactionsLog.consume();
+
+		assertNull(latestTransactionAdded);
 	}
 }
