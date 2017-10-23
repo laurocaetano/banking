@@ -1,7 +1,6 @@
 package com.lauro.banking.transactions;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.time.Instant;
 
@@ -30,10 +29,11 @@ public class TransactionConsumerTest {
 	public void testConsumingFromTheTransactionLog() {
 		transactionsLog.insert(sampleTransaction);
 
-		assertTrue(repository.getAll().isEmpty());
-
 		consumer.consumeTransactionFromTheLog();
 
-		assertEquals(sampleTransaction, repository.getAll().get(0));
+		final Transaction consumedTransaction = repository.getAll().stream().filter(t -> t.equals(sampleTransaction))
+				.findFirst().get();
+
+		assertEquals(sampleTransaction, consumedTransaction);
 	}
 }
