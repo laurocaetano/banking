@@ -29,9 +29,9 @@ public class TransactionsStatisticsIntegrationTest {
 
 	private URI statisticsURL;
 
-	private final Transaction sampleTransaction1 = new Transaction(Instant.now().toEpochMilli(), 9L);
-	private final Transaction sampleTransaction2 = new Transaction(Instant.now().toEpochMilli(), 3L);
-	private final RecentStatistics expectedStatistics = new RecentStatistics(12D, 6D, 9D, 3D, 2L);
+	private final Transaction sampleTransaction1 = new Transaction(Instant.now().toEpochMilli(), 8.5D);
+	private final Transaction sampleTransaction2 = new Transaction(Instant.now().toEpochMilli(), 3.50D);
+	private final RecentStatistics expectedStatistics = new RecentStatistics(12D, 6D, 8.5D, 3.5D, 2L);
 
 	@Autowired
 	private TestRestTemplate restTemplate;

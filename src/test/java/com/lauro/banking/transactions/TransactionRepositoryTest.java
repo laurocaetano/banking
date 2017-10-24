@@ -11,7 +11,7 @@ public class TransactionRepositoryTest {
 
 	private final TransactionRepository repository = new TransactionRepository();
 	private final Long sixtySecondsAgo = 60L;
-	private final Transaction sampleTransaction = new Transaction(Instant.now().toEpochMilli(), 10L);
+	private final Transaction sampleTransaction = new Transaction(Instant.now().toEpochMilli(), 10D);
 
 	@Test
 	public void testInsertingNewTransaction() {

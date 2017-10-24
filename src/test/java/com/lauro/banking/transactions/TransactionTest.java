@@ -11,13 +11,13 @@ public class TransactionTest {
 
 	@Test
 	public void testTransactionIsNewerThanSixtySeconds() {
-		final Transaction transaction = new Transaction(secondsAgoToTimestamp(10L), 12L);
+		final Transaction transaction = new Transaction(secondsAgoToTimestamp(10L), 12D);
 		assertTrue(transaction.isNewerThanSixtySeconds());
 	}
 
 	@Test
 	public void testTransactionIsOlderThanSixtySeconds() {
-		final Transaction transaction = new Transaction(secondsAgoToTimestamp(80L), 12L);
+		final Transaction transaction = new Transaction(secondsAgoToTimestamp(80L), 12D);
 		assertFalse(transaction.isNewerThanSixtySeconds());
 	}
 

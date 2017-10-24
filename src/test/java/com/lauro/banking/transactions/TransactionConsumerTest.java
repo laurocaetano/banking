@@ -23,7 +23,7 @@ public class TransactionConsumerTest {
 	@Autowired
 	private TransactionConsumer consumer;
 
-	private final Transaction sampleTransaction = new Transaction(Instant.now().toEpochMilli(), 10L);
+	private final Transaction sampleTransaction = new Transaction(Instant.now().toEpochMilli(), 10D);
 
 	@Test
 	public void testConsumingFromTheTransactionLog() {

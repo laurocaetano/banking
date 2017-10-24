@@ -29,7 +29,7 @@ public class TransactionsControllerTest {
 
 	@Test
 	public void testCreatingTransactionsNewerThanSixtySeconds() throws Exception {
-		final Long amount = 12L;
+		final Double amount = 12D;
 		final Long timestamp = Instant.now().toEpochMilli();
 		final String requestContent = "{\"amount\":" + amount + ",\"timestamp\":" + timestamp + "}";
 
@@ -45,7 +45,7 @@ public class TransactionsControllerTest {
 
 	@Test
 	public void testCreatingTransactionsOlderThanSixtySeconds() throws Exception {
-		final Long amount = 15L;
+		final Double amount = 15D;
 		final Long timestamp = Instant.now().minusSeconds(70L).toEpochMilli();
 		final String requestContent = "{\"amount\":" + amount + ",\"timestamp\":" + timestamp + "}";
 

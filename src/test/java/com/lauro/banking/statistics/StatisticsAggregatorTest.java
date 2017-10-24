@@ -24,9 +24,9 @@ public class StatisticsAggregatorTest {
 	@Autowired
 	private TransactionRepository transactionRepository;
 
-	private final Transaction sampleTransaction1 = new Transaction(Instant.now().toEpochMilli(), 22L);
-	private final Transaction sampleTransaction2 = new Transaction(Instant.now().minusSeconds(10L).toEpochMilli(), 99L);
-	private final Transaction sampleTransaction3 = new Transaction(Instant.now().minusSeconds(55L).toEpochMilli(), 03L);
+	private final Transaction sampleTransaction1 = new Transaction(Instant.now().toEpochMilli(), 22D);
+	private final Transaction sampleTransaction2 = new Transaction(Instant.now().minusSeconds(10L).toEpochMilli(), 99D);
+	private final Transaction sampleTransaction3 = new Transaction(Instant.now().minusSeconds(55L).toEpochMilli(), 03D);
 
 	@Test
 	public void testAggregateLatestTransactions() {

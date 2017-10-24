@@ -4,18 +4,18 @@ import java.time.Instant;
 
 public class Transaction {
 
-	private Long amount;
+	private Double amount;
 	private Long timestamp;
 
 	public Transaction() {
 	}
 
-	public Transaction(Long timestamp, Long amount) {
+	public Transaction(Long timestamp, Double amount) {
 		this.timestamp = timestamp;
 		this.amount = amount;
 	}
 
-	public Long getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
 
@@ -23,7 +23,7 @@ public class Transaction {
 		return timestamp;
 	}
 
-	public void setAmount(Long amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 
